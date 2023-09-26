@@ -1,0 +1,23 @@
+# Various IDEs and Editors
+.vscode/
+.idea/
+
+# Mac OSX temporary files
+.DS_Store
+**/.DS_Store
+
+# dfx temporary files
+.dfx/
+
+# generated files
+
+# rust
+target/
+
+#if you add frontend code
+node_modules/
+
+#private key
+repl-tests/id.pem
+./ident-1.pem
+./production.pem

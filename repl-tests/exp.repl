@@ -1,0 +1,32 @@
+let icrc1 = principal "rno2w-sqaaa-aaaaa-aaacq-cai";
+let john_dao = principal "renrk-eyaaa-aaaaa-aaada-cai";
+identity default "./id.pem";
+
+
+
+     
+call john_dao.get_staking_acount();
+
+let staking_account = record {
+  owner = principal "renrk-eyaaa-aaaaa-aaada-cai";
+  subaccount = opt blob "\1d9\1e\b9\95\8c?\8b\d7u\9c\d1y\c7j\a46\16qj\99\9b\aa\b5\8d\e2\c9\007\02\00\00";
+};
+
+let transferArg = record {
+    from_subaccount = null;
+    to = staking_account;
+    amount = 1002330;
+    fee = opt 0;
+    memo = null;
+    created_at_time = null;
+};
+
+call icrc1.icrc1_transfer(transferArg);
+
+
+call icrc1.icrc1_balance_of(staking_account);
+call john_dao.update_staked_tokens();
+call john_dao.get_staked_balance();
+
+// call icrc1.icrc1_minting_account();
+// icrc1_transfer : (TransferArg) -> (TransferResult);

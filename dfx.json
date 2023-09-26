@@ -1,0 +1,40 @@
+{
+  "canisters": {
+    "internet_identity": {
+      "build": "",
+      "candid": "candid/internet_identity.did",
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai",
+          "local": "qhbym-qaaaa-aaaaa-aaafq-cai"
+        }
+      },
+      "type": "custom",
+      "wasm": ""
+    },
+    "john_dao": {
+      "candid": "src/backend/john_dao/john_dao.did",
+      "package": "john_dao",
+      "type": "rust"
+    },
+    "nns-ledger": {
+      "build": "",
+      "candid": "candid/nns-ledger.did",
+      "remote": {
+        "id": {
+          "ic": "ryjl3-tyaaa-aaaaa-aaaba-cai",
+          "local": "ryjl3-tyaaa-aaaaa-aaaba-cai"
+        }
+      },
+      "type": "custom",
+      "wasm": ""
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "version": 1
+}

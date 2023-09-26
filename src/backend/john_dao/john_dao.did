@@ -1,0 +1,103 @@
+type Badge = variant { OG; Donated; Other : text };
+type CreateProposalArg = record { tweet : Tweet };
+type CreateUserArg = record { "principal" : principal };
+type Error = variant {
+  AlreadyVoted;
+  RoundResultDoesNotExist;
+  AlreadyProposed;
+  UserExistsAlready;
+  UserProposalLimitReached;
+  NoDepositAddress;
+  UsernameTooLong;
+  ProposalLimitReached;
+  TweetTooLong;
+  PaymentInProgress;
+  UserDoesNotExist;
+  ProposalDoesNotExist;
+  NoPermission;
+  PaymentError : text;
+  NoWithdrawableE8s;
+};
+type LoginMethod = variant { II; Other : text; Twitter };
+type Proposal = record {
+  created_by_id : nat32;
+  tweet : Tweet;
+  created_at : nat64;
+  reports : vec principal;
+  points : int32;
+};
+type ProposalInfo = record {
+  id : nat32;
+  upvote_status : UpvoteStatus;
+  tweet : Tweet;
+  nr_of_reports : nat32;
+  created_at : nat64;
+  created_by : nat32;
+  reported : bool;
+  points : int32;
+};
+type Result = variant { Ok : nat64; Err : Error };
+type Result_1 = variant { Ok : nat32; Err : Error };
+type Result_2 = variant { Ok; Err : Error };
+type Result_3 = variant { Ok : User; Err : Error };
+type Settings = record {
+  max_state_size_bytes : nat32;
+  max_tweet_length : nat32;
+  max_proposals_per_user : nat32;
+  reward_per_round_e8s : nat64;
+  max_proposals_per_round : nat32;
+  round_duration_seconds : nat64;
+};
+type Tweet = variant {
+  ImageTweet : record { tweet : text; image_path : text };
+  Tweet : text;
+};
+type UpvoteStatus = variant { Downvoted; NotVoted; Upvoted };
+type User = record {
+  id : nat32;
+  upvotes : vec nat32;
+  user_name : opt text;
+  deposit_address : opt vec nat8;
+  badges : vec Badge;
+  created_proposal : opt nat32;
+  last_updated : nat64;
+  withdrawable_e8s : nat64;
+  verification_status : VerificationStatus;
+  new_auth : opt record { principal; LoginMethod };
+  login_method : LoginMethod;
+  payment_in_progress : bool;
+  downvotes : vec nat32;
+  karma : int32;
+  nr_posts_this_round : nat32;
+};
+type VerificationStatus = variant { Bot; Unverified; Verified };
+type Vote = variant { Downvote; Upvote };
+service : () -> {
+  claim_reward : () -> (Result);
+  create_proposal : (CreateProposalArg) -> (Result_1);
+  create_user : (CreateUserArg) -> (Result_1);
+  delete_proposal : (nat32) -> (Result_2);
+  get_canister_account : () -> (text) query;
+  get_changed_users : (opt nat64) -> (
+      vec record { principal; User },
+      nat64,
+    ) query;
+  get_proposals : () -> (vec Proposal) query;
+  get_proposals_info : () -> (vec ProposalInfo) query;
+  get_round_end_time_nano : () -> (nat64) query;
+  get_user : () -> (Result_3) query;
+  get_user_range : (nat32, nat32) -> (vec User) query;
+  get_users : () -> (vec User) query;
+  get_users_by_karma : (nat32) -> (vec User) query;
+  poll_untweeted : () -> (opt record { nat64; Tweet }) query;
+  post_tweet : (nat64) -> (Result_2);
+  report_proposal : (nat32) -> (Result_2);
+  stage_new_principal : (principal, LoginMethod) -> (Result_2);
+  update_account_identifier : (vec nat8) -> (Result_2);
+  update_last_backup_time : (nat64) -> (Result_2);
+  update_settings : (Settings) -> (Result_2);
+  update_user_principal : (principal) -> (Result_2);
+  update_username : (text) -> (Result_2);
+  verify_user : (nat32) -> (Result_2);
+  vote_for_proposal : (nat32, Vote) -> (Result_2);
+}
