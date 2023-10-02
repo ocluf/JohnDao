@@ -44,8 +44,11 @@
 	});
 </script>
 
-{#if countdown !== ''}
-	<p class="p-1 text-3xl font-semibold">{@html countdown}</p>
-{:else}
-	<p class="p-1 text-xl font-semibold text-gray-700">Loading...</p>
-{/if}
+<div class="flex flex-col items-center">
+	{#if countdown !== ''}
+		<p class="p-1 text-3xl font-semibold">{@html countdown}</p>
+	{:else}
+		<p class="p-1 text-xl font-semibold text-gray-700">Loading...</p>
+	{/if}
+	<div class="1">Round reward = 1 ICP</div>
+</div>

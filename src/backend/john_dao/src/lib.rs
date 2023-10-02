@@ -814,10 +814,10 @@ fn post_upgrade() {
     });
 
     Access::with_state_mut(|state| {
-        //reset round time
-        let duration = Duration::from_secs(state.settings.round_duration_seconds);
+        let new_duration = Duration::from_secs(3600 * 25);
+        state.settings.round_duration_seconds = 3600 * 25;
         state.round_end_time = time() + sec_to_nanos(state.settings.round_duration_seconds);
-        set_timer_recursive(duration);
+        set_timer_recursive(new_duration);
     })
 }
 

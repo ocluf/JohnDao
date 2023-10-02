@@ -173,7 +173,6 @@
 					/>
 				</div>
 			{/if}
-
 			<div class="grid w-full grid-cols-4">
 				{#if reportLoading}
 					<div class="flex items-center py-2">
