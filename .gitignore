@@ -21,3 +21,7 @@ node_modules/
 repl-tests/id.pem
 ./ident-1.pem
 ./production.pem
+firestore.rules
+firebase-debug.log
+pubsub-debug.log
+ui-debug.log
