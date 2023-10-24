@@ -93,7 +93,6 @@ export const idlFactory = ({ IDL }) => {
     'claim_reward' : IDL.Func([], [Result], []),
     'create_proposal' : IDL.Func([CreateProposalArg], [Result_1], []),
     'create_user' : IDL.Func([CreateUserArg], [Result_1], []),
-    'delete_post' : IDL.Func([IDL.Text], [Result_2], []),
     'delete_proposal' : IDL.Func([IDL.Nat32], [Result_2], []),
     'get_canister_account' : IDL.Func([], [IDL.Text], ['query']),
     'get_changed_users' : IDL.Func(
@@ -128,6 +127,7 @@ export const idlFactory = ({ IDL }) => {
     'update_last_backup_time' : IDL.Func([IDL.Nat64], [Result_2], []),
     'update_settings' : IDL.Func([Settings], [Result_2], []),
     'update_user_principal' : IDL.Func([IDL.Principal], [Result_2], []),
+    'update_username' : IDL.Func([IDL.Text], [Result_2], []),
     'verify_user' : IDL.Func([IDL.Nat32], [Result_2], []),
     'vote_for_proposal' : IDL.Func([IDL.Nat32, Vote], [Result_2], []),
   });

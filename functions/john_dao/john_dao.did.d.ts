@@ -90,7 +90,6 @@ export interface _SERVICE {
   'claim_reward' : ActorMethod<[], Result>,
   'create_proposal' : ActorMethod<[CreateProposalArg], Result_1>,
   'create_user' : ActorMethod<[CreateUserArg], Result_1>,
-  'delete_post' : ActorMethod<[string], Result_2>,
   'delete_proposal' : ActorMethod<[number], Result_2>,
   'get_canister_account' : ActorMethod<[], string>,
   'get_changed_users' : ActorMethod<
@@ -112,6 +111,7 @@ export interface _SERVICE {
   'update_last_backup_time' : ActorMethod<[bigint], Result_2>,
   'update_settings' : ActorMethod<[Settings], Result_2>,
   'update_user_principal' : ActorMethod<[Principal], Result_2>,
+  'update_username' : ActorMethod<[string], Result_2>,
   'verify_user' : ActorMethod<[number], Result_2>,
   'vote_for_proposal' : ActorMethod<[number, Vote], Result_2>,
 }

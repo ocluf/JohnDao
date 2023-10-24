@@ -171,6 +171,8 @@ async function postTweet(tweet) {
           media: { media_ids: [mediaId] },
         },
       ]);
+
+      userClient.v2.tweet();
     }
 
     if (tweet.Tweet) {

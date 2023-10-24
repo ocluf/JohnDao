@@ -171,4 +171,14 @@ impl Users {
             Ok(-1)
         }
     }
+
+    pub fn get_all_users_that_voted(&self) -> Vec<u32> {
+        let mut users_that_voted = Vec::new();
+        for user in self.users.values() {
+            if !user.upvotes.is_empty() || !user.downvotes.is_empty() {
+                users_that_voted.push(user.id);
+            }
+        }
+        users_that_voted
+    }
 }

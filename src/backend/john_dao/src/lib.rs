@@ -58,13 +58,6 @@ enum Tweet {
 }
 
 impl Tweet {
-    fn to_string(&self) -> String {
-        match self {
-            Tweet::Tweet(tweet) => tweet.clone(),
-            Tweet::ImageTweet { tweet, image_path } => format!("{} {}", tweet, image_path),
-        }
-    }
-
     fn get_tweet(&self) -> &String {
         match self {
             Tweet::Tweet(tweet) => tweet,
@@ -317,10 +310,7 @@ impl State {
     }
 
     fn conclude_round(&mut self) {
-        // let winning_proposal = self
-        //     .proposals
-        //     .iter()
-        //     .max_by_key(|(_, proposal)| proposal.points);
+        let user_ids_that_voted = self.users.get_all_users_that_voted();
 
         let winning_proposal_id = self
             .proposals
@@ -338,9 +328,22 @@ impl State {
 
             let created_by = self.users.get_by_id(proposal.created_by_id);
             if let Some(user) = created_by {
-                user.withdrawable_e8s += self.settings.reward_per_round_e8s;
+                user.withdrawable_e8s +=
+                    (self.settings.reward_per_round_e8s as f64 * 0.3).round() as u64;
                 user.karma += 10;
             }
+
+            let total_users_users_that_voted = user_ids_that_voted.len() as f64;
+            for id in user_ids_that_voted {
+                let user = self.users.get_by_id(id);
+                if let Some(user) = user {
+                    user.withdrawable_e8s += (self.settings.reward_per_round_e8s as f64 * 0.7
+                        / total_users_users_that_voted)
+                        .round() as u64;
+                    user.karma += 5;
+                }
+            }
+
             self.users.reset_round();
             //self.proposals.clear();
             // clear all the proposals that have 1 or less points keep the rest but reset points
@@ -580,7 +583,7 @@ fn set_timer_recursive(duration: Duration) {
 #[init]
 #[candid_method(init)]
 fn init() {
-    let round_duration_seconds = 3600 * 12;
+    let round_duration_seconds = 60; //3600 * 12;
     STATE.with(|state| {
         *state.borrow_mut() = Some(State {
             next_user_id: 1,
