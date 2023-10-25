@@ -221,4 +221,6 @@
 			</div>
 		</svelte:fragment>
 	</AppShell>
+{:else}
+	you are banned
 {/if}
