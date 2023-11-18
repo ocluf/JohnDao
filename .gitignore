@@ -19,8 +19,8 @@ node_modules/
 
 #private key
 repl-tests/id.pem
-./ident-1.pem
-./production.pem
+ident-1.pem
+production.pem
 firestore.rules
 firebase-debug.log
 pubsub-debug.log
