@@ -8,7 +8,7 @@ call production.update_settings(
           max_state_size_bytes = 1_000_000_000;
           max_tweet_length = 280;
           max_proposals_per_user = 5;
-          reward_per_round_e8s = 100_000_000; 
+          reward_per_round_e8s = 10_000_000; 
           max_proposals_per_round = 1500;
           round_duration_seconds = 43200;
     }

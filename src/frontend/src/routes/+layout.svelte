@@ -185,8 +185,8 @@
 				</div>
 			</div>
 			<div class=" flex justify-center space-x-2 ">
-				<div class="badge bg-white">Winner = 0.3 ICP</div>
-				<div class="badge bg-white">Voting = 0.7 ICP / number of voters</div>
+				<div class="badge ">Winner = 0.03 ICP</div>
+				<div class="badge ">Voting = 0.07 ICP / number of voters</div>
 			</div>
 		</svelte:fragment>
 		<slot />
