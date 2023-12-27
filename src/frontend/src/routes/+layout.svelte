@@ -30,57 +30,64 @@
 	import { goto } from '$app/navigation';
 	import { logout } from '$lib/utils';
 
-	$: NotLoggedIn = $canisterUser.state === 'notLoggedIn';
+	// $: NotLoggedIn = $canisterUser.state === 'notLoggedIn';
 
-	let currentPage: string | null;
+	// let currentPage: string | null;
 
-	onMount(() => {
-		page.subscribe((value) => {
-			currentPage = value.route.id;
-		});
-	});
+	// onMount(() => {
+	// 	page.subscribe((value) => {
+	// 		currentPage = value.route.id;
+	// 	});
+	// });
 
-	const modalComponentUsername: ModalComponent = {
-		// Pass a reference to your custom component
-		ref: UsernameUpdater,
-		// Add the component properties as key/value pairs
-		props: {},
-		// Provide a template literal for the default component slot
-		slot: ''
-	};
+	// const modalComponentUsername: ModalComponent = {
+	// 	// Pass a reference to your custom component
+	// 	ref: UsernameUpdater,
+	// 	// Add the component properties as key/value pairs
+	// 	props: {},
+	// 	// Provide a template literal for the default component slot
+	// 	slot: ''
+	// };
 
-	const modalComponent: ModalComponent = {
-		// Pass a reference to your custom component
-		ref: TweetProposalCreator,
-		// Add the component properties as key/value pairs
-		props: {},
-		// Provide a template literal for the default component slot
-		slot: ''
-	};
+	// const modalComponent: ModalComponent = {
+	// 	// Pass a reference to your custom component
+	// 	ref: TweetProposalCreator,
+	// 	// Add the component properties as key/value pairs
+	// 	props: {},
+	// 	// Provide a template literal for the default component slot
+	// 	slot: ''
+	// };
 
-	const modal: ModalSettings = {
-		type: 'component',
-		title: 'Create tweet proposal',
-		component: modalComponent
-	};
+	// const modal: ModalSettings = {
+	// 	type: 'component',
+	// 	title: 'Create tweet proposal',
+	// 	component: modalComponent
+	// };
 
-	function handleCreateProposal() {
-		if ($canisterUser.state === 'user') {
-			modalStore.trigger(modal);
-		} else {
-			goto('/login');
-		}
-	}
+	// function handleCreateProposal() {
+	// 	if ($canisterUser.state === 'user') {
+	// 		modalStore.trigger(modal);
+	// 	} else {
+	// 		goto('/login');
+	// 	}
+	// }
 
-	const modalComponentRegistry: Record<string, ModalComponent> = {
-		accountCreationUsernameModal: modalComponentUsername
-	};
+	// const modalComponentRegistry: Record<string, ModalComponent> = {
+	// 	accountCreationUsernameModal: modalComponentUsername
+	// };
 
-	function handleHamburger(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
-		drawerStore.open();
-	}
+	// function handleHamburger(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+	// 	drawerStore.open();
+	// }
 </script>
 
+<div class="flex h-full items-center justify-center">
+	<div class="p-5 text-2xl font-bold lg:p-20">
+		John Dao is temporarily closed in preparation of JohnDao 2.0 🚀. We'll be back in 2024.
+	</div>
+</div>
+
+<!-- 
 {#if $userDoc?.creating_user}
 	<div class="fixed z-[9999] h-screen w-screen bg-black opacity-70">
 		<div class="flex h-full items-center justify-center">
@@ -223,4 +230,4 @@
 	</AppShell>
 {:else}
 	you are banned
-{/if}
+{/if} -->
