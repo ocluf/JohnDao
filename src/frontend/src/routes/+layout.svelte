@@ -81,11 +81,11 @@
 	}
 </script>
 
-<div class="flex h-full items-center justify-center">
-	<div class="p-5 text-2xl font-bold lg:p-20">
-		John Dao is temporarily closed in preparation of JohnDao 2.0 🚀. We'll be back in 2024.
-	</div>
-</div>
+<!-- <div class="flex h-full items-center justify-center">
+		<div class="p-5 text-2xl font-bold lg:p-20">
+			John Dao is temporarily closed in preparation of JohnDao 2.0 🚀. We'll be back in 2024.
+		</div>
+	</div> -->
 
 {#if $userDoc?.creating_user}
 	<div class="fixed z-[9999] h-screen w-screen bg-black opacity-70">
